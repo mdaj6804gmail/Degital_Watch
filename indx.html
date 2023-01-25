@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degital Watch</title>
+    <style>
+        body{
+            background-color: #f1f1f2;
+        }
+    .my_watch{
+        left: 35%;
+        top: 35%;
+        position: fixed;
+        padding: 50px;
+        background-color: aliceblue;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 10px 50px;
+    }
+span{
+    font-size: 50px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="my_watch">
+        <span class="H"></span>
+        <span class="M"></span><br>
+        <span class="date"></span>
+    </div>
+
+
+    <script>
+
+        function MyDate() {
+            var myDate = new Date();
+            var hr, min = (myDate.getMinutes() < 10) ? "0" + myDate.getMinutes() : myDate.getMinutes(),
+                sec = (myDate.getSeconds() < 10) ? "0" + myDate.getSeconds() : myDate.getSeconds(),
+                M = (myDate.getHours() >= 12) ? "PM" : "AM";
+            if (myDate.getHours() == 0) {
+                hr = 12;
+            } else if (myDate.getHours() > 12) {
+                hr = myDate.getHours() - 12;
+            } else {
+                hr = myDate.getHours();
+            }
+
+            var correntTime = hr + ":" + min + ":" + sec + ":";
+            document.getElementsByClassName("H")[0].innerHTML = correntTime;
+            document.getElementsByClassName("M")[0].innerHTML = M;
+            var myDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                myMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                day = myDate.getDate();
+            var correntDate =myDay[myDate.getDay()] + "," +myMonth[myDate.getMonth()]+ " "+ day;
+document.getElementsByClassName("date")[0].innerHTML = correntDate;
+
+        }
+        MyDate() 
+        setInterval(()=>{
+            MyDate()  
+        },1000)
+    </script>
+</body>
+
+</html>
